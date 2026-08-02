@@ -11,25 +11,30 @@ export function Hero() {
       className="relative flex flex-col overflow-hidden bg-ink md:block md:min-h-[780px] lg:min-h-[660px] xl:min-h-[720px]"
     >
       {/*
-        Телефон (<768): фото — отдельная нижняя зона под текстом. Контейнер
-        повторяет пропорции исходника, поэтому кадр виден целиком и обе машины
-        не обрезаются ни по бокам, ни снизу.
-        Планшет и десктоп: то же фото становится подложкой на всю секцию.
+        Телефон (<768): фото — отдельная нижняя зона под текстом. Кадр 3:2
+        дополнительно приближен трансформацией от правого нижнего угла, поэтому
+        в него попадают ровно две машины целиком, крупно и без обрезки по бокам.
+        Планшет и десктоп: то же фото — подложка на всю секцию, без масштаба.
       */}
-      <div className="relative order-2 aspect-[1672/941] w-full md:absolute md:inset-0 md:order-none md:aspect-auto md:h-full">
+      <div className="relative order-2 aspect-[3/2] w-full overflow-hidden md:absolute md:inset-0 md:order-none md:aspect-auto md:h-full">
         <Image
           src="/images/hero.png"
           alt="Белый седан и чёрный хэтчбек Urban Wheels 41 на фоне ночного Петропавловска-Камчатского"
           fill
           priority
-          sizes="100vw"
+          sizes="(max-width: 767px) 160vw, 100vw"
           quality={90}
-          className="object-cover object-center md:object-[97%_bottom] lg:object-center"
+          className="origin-bottom-right scale-[1.45] object-cover object-right md:origin-center md:scale-100 md:object-[97%_bottom] lg:object-center"
         />
-        {/* Плавный стык текстовой зоны и фото на телефоне */}
+        {/* Мягкий стык текстовой зоны и фото на телефоне */}
         <div
           aria-hidden
-          className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink via-ink/70 to-transparent md:hidden"
+          className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ink via-ink/55 to-transparent md:hidden"
+        />
+        {/* Гасим нижнюю кромку фото — по асфальту, машин не задевает */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-ink to-transparent md:hidden"
         />
       </div>
 
@@ -54,13 +59,17 @@ export function Hero() {
         className="absolute inset-x-0 bottom-0 hidden h-28 bg-gradient-to-t from-ink to-transparent md:block"
       />
 
-      <div className="shell relative z-[2] order-1 flex flex-col justify-start pb-10 pt-12 md:order-none md:min-h-[780px] md:pb-12 md:pt-[68px] lg:min-h-[660px] lg:justify-center lg:py-24 xl:min-h-[720px]">
+      {/*
+        На планшете вертикально justify-between разводит текст к верху,
+        а кнопку — вниз, на чистый асфальт под машинами.
+      */}
+      <div className="shell relative z-[2] order-1 flex flex-col justify-start pb-6 pt-10 md:order-none md:min-h-[780px] md:justify-between md:pb-8 md:pt-[68px] lg:min-h-[660px] lg:justify-center lg:py-24 xl:min-h-[720px]">
         <div className="max-w-xl md:max-w-2xl lg:max-w-2xl">
           <p className="font-heading text-sm uppercase tracking-[0.22em] text-gold-gradient sm:text-base">
             {hero.overline}
           </p>
 
-          <h1 className="mt-4 font-heading text-[2.35rem] font-bold uppercase leading-[1.08] tracking-wide sm:mt-5 sm:text-[2.75rem] md:text-[3rem] lg:text-[4.25rem] xl:text-[4.75rem]">
+          <h1 className="mt-3 font-heading text-[1.875rem] font-bold uppercase leading-[1.08] tracking-wide sm:mt-5 sm:text-[2.75rem] md:text-[3rem] lg:text-[4.25rem] xl:text-[4.75rem]">
             {hero.titleParts.map((part, i) => (
               <span
                 key={part.text}
@@ -72,18 +81,18 @@ export function Hero() {
             ))}
           </h1>
 
-          <p className="mt-5 max-w-md text-base leading-relaxed text-muted sm:mt-6 sm:text-lg lg:max-w-lg">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-muted sm:mt-6 sm:text-lg lg:max-w-lg">
             {hero.subtitle}
           </p>
-
-          <a
-            href="#cars"
-            className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl bg-gold-gradient px-7 py-4 font-heading text-sm font-semibold uppercase tracking-[0.12em] text-ink shadow-lg shadow-black/40 transition-transform duration-300 ease-out hover:scale-105 sm:text-base md:mt-8 md:inline-flex md:w-auto md:justify-start lg:mt-10"
-          >
-            {hero.cta}
-            <ArrowRightIcon className="h-4 w-4" />
-          </a>
         </div>
+
+        <a
+          href="#cars"
+          className="mt-5 inline-flex w-auto self-start items-center gap-2 rounded-lg bg-gold-gradient px-5 py-3 font-heading text-xs font-semibold uppercase tracking-[0.12em] text-ink shadow-lg shadow-black/40 transition-transform duration-300 ease-out hover:scale-105 sm:text-sm md:mt-0 md:gap-3 md:rounded-xl md:px-7 md:py-4 md:text-base lg:mt-10"
+        >
+          {hero.cta}
+          <ArrowRightIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+        </a>
       </div>
     </section>
   )
