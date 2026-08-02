@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* запас под sticky-шапку при переходе по якорям */
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    @apply bg-ink text-white font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading uppercase;
+  }
+
+  ::selection {
+    @apply bg-gold-dark text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold-light ring-offset-2 ring-offset-ink;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 xl:px-10;
+  }
+
+  /* Секции разделены крупными воздушными отступами */
+  .section {
+    @apply py-20 sm:py-24 xl:py-32;
+  }
+
+  .text-gold-gradient {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-surface;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
