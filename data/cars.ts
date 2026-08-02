@@ -101,6 +101,16 @@ export const cars: Car[] = [
     specs: suvSpecs,
   },
   {
+    id: 'jimny-land-venture',
+    name: 'Suzuki Jimny Land Venture',
+    image: '/images/jimny-black-2.png',
+    alt: 'Чёрный внедорожник Suzuki Jimny Land Venture с экспедиционным багажником и люстрой',
+    width: 1086,
+    height: 1448,
+    category: 'suv',
+    specs: suvSpecs,
+  },
+  {
     id: 'jimny',
     name: 'Suzuki Jimny',
     image: '/images/jimny-white.png',
