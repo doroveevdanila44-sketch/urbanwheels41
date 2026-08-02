@@ -26,10 +26,27 @@ export function Hero() {
           quality={90}
           className="origin-bottom-right scale-[1.45] object-cover object-right md:origin-center md:scale-100 md:object-[97%_bottom] lg:object-center"
         />
-        {/* Мягкий стык текстовой зоны и фото на телефоне */}
+        {/*
+          Стык текстовой зоны и фото на телефоне.
+          Верхний ряд кадра — не тёмное небо, а светлая полоса заката:
+          в среднем rgb(81,68,66), местами до rgb(199,161,142) против фона
+          #0A0A0A. Поэтому затухание длинное (30% высоты полосы) и с плавным
+          easing — короткий двухстоповый градиент обрывался слишком резко,
+          и место его окончания читалось горизонтальной линией.
+        */}
         <div
           aria-hidden
-          className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ink via-ink/55 to-transparent md:hidden"
+          className="absolute inset-x-0 top-0 h-[30%] md:hidden"
+          style={{
+            backgroundImage:
+              'linear-gradient(to bottom,' +
+              ' rgb(10,10,10) 0%,' +
+              ' rgba(10,10,10,0.9) 12%,' +
+              ' rgba(10,10,10,0.7) 30%,' +
+              ' rgba(10,10,10,0.45) 50%,' +
+              ' rgba(10,10,10,0.2) 72%,' +
+              ' rgba(10,10,10,0) 100%)',
+          }}
         />
         {/* Гасим нижнюю кромку фото — по асфальту, машин не задевает */}
         <div
