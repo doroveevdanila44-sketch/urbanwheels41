@@ -28,12 +28,15 @@ export const navLinks = [
 
 export const hero = {
   overline: 'Прокат автомобилей',
-  /** H1 разбит на части: `gold: true` — слово выделяется золотом */
+  /**
+   * H1 разбит на части: `gold: true` — слово выделяется золотом.
+   * У тире неразрывный пробел, чтобы оно не убегало на новую строку.
+   */
   titleParts: [
-    { text: 'Автомобиль,', gold: false },
-    { text: 'который', gold: false },
+    { text: 'Выбирайте направление\u00A0—', gold: false },
+    { text: 'автомобиль', gold: false },
     { text: 'уже', gold: true },
-    { text: 'ждёт вас', gold: false },
+    { text: 'готов', gold: false },
   ],
   subtitle:
     'Компактные городские автомобили и внедорожники для поездок по Камчатке',

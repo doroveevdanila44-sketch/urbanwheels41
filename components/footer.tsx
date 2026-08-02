@@ -7,7 +7,8 @@ export function Footer() {
   return (
     <footer id="contacts" className="border-t border-line bg-[#0D0D0D]">
       <div className="shell py-14 sm:py-16 xl:py-20">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-10 xl:gap-14">
+        {/* На планшете вертикально повторяем горизонтальную раскладку в три колонки */}
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:grid-cols-3 lg:gap-10 xl:gap-14">
           {/* Логотип и описание */}
           <div>
             <div className="relative h-11 w-[170px] sm:h-12 sm:w-[185px]">
@@ -67,7 +68,8 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Открыть Urban Wheels 41 на Яндекс Картах"
-              className="group relative block aspect-[3/2] w-full overflow-hidden rounded-2xl border border-line transition-colors duration-300 hover:border-gold-dark/70 lg:aspect-[4/3]"
+              /* Фиксируем пропорции и высоту, иначе в портретной ориентации карта раздувается */
+              className="group relative block aspect-[3/2] max-h-[280px] w-full overflow-hidden rounded-2xl border border-line transition-colors duration-300 hover:border-gold-dark/70 md:aspect-[4/3] lg:aspect-[4/3]"
             >
               <Image
                 src="/images/map.png"
